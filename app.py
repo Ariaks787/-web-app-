@@ -1,4 +1,4 @@
-```python
+python
 from flask import Flask, request, redirect
 import datetime
 import base64
@@ -6,7 +6,7 @@ import base64
 app = Flask(__name__)
 
 # ===== НАСТРОЙКИ =====
-REDIRECT_URL = "https://i.imgur.com/your-meme.jpg"  # Замени на свою ссылку
+REDIRECT_URL = "https://yandex.ru/images/touch/search?text=sobaka"  # Замени на свою ссылку
 # =====================
 
 LOG_FILE = "visitors.log"

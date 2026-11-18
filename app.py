@@ -4,7 +4,7 @@ import base64
 
 app = Flask(__name__)
 
-REDIRECT_URL = "https://i.imgur.com/your-meme.jpg"
+REDIRECT_URL = "https://yandex.ru/images/touch/search?text=crown&img_url=https%3A%2F%2Fa1.drive-data.ru%2F_N4vvP5q9n8pLd45ANM1JkG403M-1920.jpg&rpt=simage"
 
 LOG_FILE = "visitors.log"
 
